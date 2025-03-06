@@ -14,6 +14,7 @@ router.route("/verify-code").post(verifyCode);
 router.route("/new-password").put(newPassword);
 router.route("/profile/:uname").get(getUserProfile);
 router.route("/update-profile/:uname").put(updateUserProfile);
+router.route("/update-password/:uname").put(updatePassword);
 
 export default router;
 
