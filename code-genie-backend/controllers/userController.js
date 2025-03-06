@@ -112,3 +112,21 @@ export const verifyCode = async (req, res) => {
     }
 
 };
+
+export const newPassword = async (req, res) => {
+    const { reset_email, newPassword } = req.body;
+    try {
+        const user = await User.findOne({ email: reset_email });
+        if (!user) return res.status(400).json({ error: "User not found" });
+
+        user.password = await bcrypt.hash(newPassword, 10);
+        user.resetPasswordCode = undefined;
+        user.resetPasswordExpires = undefined;
+        await user.save();
+
+        res.json({ message: "Password reset successful" });
+    } catch (error) {
+        res.status(500).json({ error: "Error resetting password" });
+    }
+
+};
