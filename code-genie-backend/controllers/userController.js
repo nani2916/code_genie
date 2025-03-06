@@ -181,3 +181,28 @@ export const updateUserProfile = async (req, res) => {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Error updating profile", details: error.message });
     }
 };
+
+export const updatePassword = async (req, res) => {
+    try {
+        const { uname } = req.params;
+        const { currentPassword, newPassword } = req.body;
+
+        const user = await User.findOne({ uname });
+        if (!user) {
+            return res.status(StatusCodes.NOT_FOUND).json({ message: "User not found" });
+        }
+
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
+            return res.status(StatusCodes.BAD_REQUEST).json({ message: "Current password is incorrect" });
+        }
+
+        user.password = await bcrypt.hash(newPassword, 10);
+        await user.save();
+
+        res.status(StatusCodes.OK).json({ message: "Password updated successfully!" });
+    } catch (error) {
+        console.error("Error updating password:", error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Error updating password", details: error.message });
+    }
+};
