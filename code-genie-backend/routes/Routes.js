@@ -15,6 +15,7 @@ router.route("/new-password").put(newPassword);
 router.route("/profile/:uname").get(getUserProfile);
 router.route("/update-profile/:uname").put(updateUserProfile);
 router.route("/update-password/:uname").put(updatePassword);
+router.route("/chat").post(chat_response);
 
 export default router;
 
