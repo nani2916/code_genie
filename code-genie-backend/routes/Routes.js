@@ -9,6 +9,7 @@ router.route("/").get((req, res) => {
 
 router.route("/register").post(signup);
 router.route("/login").post(signin);
+router.route("/reset-password").post(resetPassword);
 
 export default router;
 
