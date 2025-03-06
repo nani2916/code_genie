@@ -60,3 +60,37 @@ export const signin = async (req, res) => {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: "Error signing in", details: error.message });
     }
 };
+
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: EMAIL_USER,
+        pass: EMAIL_PASS,
+    },
+});
+
+export const resetPassword = async (req, res) => {
+    const { email } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).json({ error: "User not found" });
+
+        const resetCode = crypto.randomInt(100000, 999999).toString();
+        const hashedCode = await bcrypt.hash(resetCode, 10);
+
+        user.resetPasswordCode = hashedCode;
+        user.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
+        await user.save();
+
+        await transporter.sendMail({
+            to: email,
+            subject: "Password Reset Code",
+            text: `Your password reset code is: ${resetCode}`,
+        });
+
+        res.json({ message: "Verification code sent to email" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Verification code not sent" });
+    }
+};
