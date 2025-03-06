@@ -94,3 +94,21 @@ export const resetPassword = async (req, res) => {
         res.status(500).json({ error: "Verification code not sent" });
     }
 };
+
+export const verifyCode = async (req, res) => {
+    const { reset_email, code } = req.body;
+    try {
+        const user = await User.findOne({ email: reset_email });
+        if (!user || !user.resetPasswordCode) return res.status(400).json({ error: "Invalid request" });
+
+        const isMatch = await bcrypt.compare(code, user.resetPasswordCode);
+        if (!isMatch || Date.now() > user.resetPasswordExpires) {
+            return res.status(400).json({ error: "Invalid or expired code" });
+        }
+
+        res.json({ message: "Code verified, proceeding to update password" });
+    } catch (error) {
+        res.status(500).json({ error: "Error verifying code" });
+    }
+
+};
