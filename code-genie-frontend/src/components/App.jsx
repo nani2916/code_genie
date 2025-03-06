@@ -13,18 +13,20 @@ import VerifyCode from "./VerifyCode";
 import NewPassword from "./NewPassword";
 
 function App() {
-    return (
-      <div>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/reset-password" element={<ResetPassword/>} />
-          <Route path="/verify-code" element={<VerifyCode />} />
-          <Route path="/new-password" element={<NewPassword />} />
-          <Route path="/edit-profile" element={<EditProfile />} />
-          <Route path="/change-password" element={<ChangePassword />} />
-        </Routes>
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/chat-page" element={<ChatPage />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/reset-password" element={<ResetPassword/>} />
+        <Route path="/verify-code" element={<VerifyCode />} />
+        <Route path="/new-password" element={<NewPassword />} />
+      </Routes>
       <ToastContainer />
     </div>
   );

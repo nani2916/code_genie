@@ -9,13 +9,12 @@ router.route("/").get((req, res) => {
 
 router.route("/register").post(signup);
 router.route("/login").post(signin);
+router.route("/chat").post(chat_response);
+router.route("/profile/:uname").get(getUserProfile);
+router.route("/update-password/:uname").put(updatePassword);
+router.route("/update-profile/:uname").put(updateUserProfile);
 router.route("/reset-password").post(resetPassword);
 router.route("/verify-code").post(verifyCode);
 router.route("/new-password").put(newPassword);
-router.route("/profile/:uname").get(getUserProfile);
-router.route("/update-profile/:uname").put(updateUserProfile);
-router.route("/update-password/:uname").put(updatePassword);
-router.route("/chat").post(chat_response);
 
 export default router;
-
