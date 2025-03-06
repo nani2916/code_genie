@@ -23,6 +23,7 @@ function App() {
           <Route path="/verify-code" element={<VerifyCode />} />
           <Route path="/new-password" element={<NewPassword />} />
           <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
         </Routes>
       <ToastContainer />
     </div>
