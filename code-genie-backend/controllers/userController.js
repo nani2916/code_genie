@@ -151,3 +151,33 @@ export const getUserProfile = async (req, res) => {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Error fetching user profile", details: error.message });
     }
 };
+
+export const updateUserProfile = async (req, res) => {
+    const { uname } = req.params;
+    const { name, email, mobile, newUname } = req.body;
+
+    try {
+        const user = await User.findOne({ uname });
+        if (!user) {
+            return res.status(StatusCodes.NOT_FOUND).json({ message: "User not found" });
+        }
+
+        if (newUname) {
+            const existingUser = await User.findOne({ uname: newUname });
+            if (existingUser) {
+                return res.status(StatusCodes.BAD_REQUEST).json({ message: "Username already taken" });
+            }
+        }
+
+        if (name) user.name = name;
+        if (email) user.email = email;
+        if (mobile) user.mobile = mobile;
+        if (newUname) user.uname = newUname;
+
+        await user.save();
+        res.status(StatusCodes.OK).json({ message: "Profile updated successfully", user });
+    } catch (error) {
+        console.error("Error updating profile:", error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Error updating profile", details: error.message });
+    }
+};
