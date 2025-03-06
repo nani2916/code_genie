@@ -12,6 +12,8 @@ router.route("/login").post(signin);
 router.route("/reset-password").post(resetPassword);
 router.route("/verify-code").post(verifyCode);
 router.route("/new-password").put(newPassword);
+router.route("/profile/:uname").get(getUserProfile);
+
 
 export default router;
 
