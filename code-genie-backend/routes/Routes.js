@@ -13,7 +13,7 @@ router.route("/reset-password").post(resetPassword);
 router.route("/verify-code").post(verifyCode);
 router.route("/new-password").put(newPassword);
 router.route("/profile/:uname").get(getUserProfile);
-
+router.route("/update-profile/:uname").put(updateUserProfile);
 
 export default router;
 
