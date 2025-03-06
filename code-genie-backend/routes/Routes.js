@@ -10,6 +10,7 @@ router.route("/").get((req, res) => {
 router.route("/register").post(signup);
 router.route("/login").post(signin);
 router.route("/reset-password").post(resetPassword);
+router.route("/verify-code").post(verifyCode);
 
 export default router;
 
