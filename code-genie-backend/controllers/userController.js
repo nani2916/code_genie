@@ -130,3 +130,24 @@ export const newPassword = async (req, res) => {
     }
 
 };
+
+export const getUserProfile = async (req, res) => {
+    try {
+        const { uname } = req.params;
+        const user = await User.findOne({ uname });
+
+        if (!user) {
+            return res.status(StatusCodes.NOT_FOUND).json({ message: "User not found" });
+        }
+
+        res.status(StatusCodes.OK).json({
+            name: user.name,
+            email: user.email,
+            mobile: user.mobile,
+            uname: user.uname,
+        });
+    } catch (error) {
+        console.error("Error fetching user profile:", error);
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Error fetching user profile", details: error.message });
+    }
+};
