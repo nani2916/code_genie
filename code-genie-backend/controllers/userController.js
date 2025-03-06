@@ -206,3 +206,30 @@ export const updatePassword = async (req, res) => {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: "Error updating password", details: error.message });
     }
 };
+
+export const chat_response = async (req, res) => {
+    try {
+        const { message } = req.body;
+
+        if (!message) {
+            return res.status(StatusCodes.BAD_REQUEST).json({ error: "Message is required" });
+        }
+
+        console.log("User message received:", message);
+
+        const flaskResponse = await axios.post("http://127.0.0.1:5000/api/chat", { message });
+        const botReply = flaskResponse.data.botreply;
+
+
+        res.status(StatusCodes.OK).json({ reply: botReply });
+    } catch (error) {
+        console.error("Error in chat_response:", error);
+
+        let errorMessage = "Internal Server Error";
+        if (error.response) {
+            errorMessage = error.response.data.error || errorMessage;
+        }
+
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: errorMessage, details: error.message });
+    }
+};
