@@ -22,6 +22,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword/>} />
           <Route path="/verify-code" element={<VerifyCode />} />
           <Route path="/new-password" element={<NewPassword />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
         </Routes>
       <ToastContainer />
     </div>
