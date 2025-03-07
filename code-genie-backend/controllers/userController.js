@@ -1,9 +1,10 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../models/User.js"; 
 import jwt from "jsonwebtoken";
-import { EMAIL_PASS, EMAIL_USER, JWT_SECRET } from "../config.js";
+import { CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN, EMAIL_USER, JWT_SECRET, REDIRECT_URI } from "../config.js";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
+import { OAuth2Client } from "google-auth-library";
 import nodemailer from "nodemailer";
 import axios from "axios";
 
@@ -61,13 +62,37 @@ export const signin = async (req, res) => {
   }
 };
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: EMAIL_USER,
-    pass: EMAIL_PASS,
-  },
-});
+const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+
+async function sendResetEmail(email, resetCode) {
+  try {
+    const accessToken = await oAuth2Client.getAccessToken();
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: EMAIL_USER,
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken.token, 
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"CodeGenie" <${EMAIL_USER}>`,
+      to: email,
+      subject: "Password Reset Code",
+      text: `Your password reset code is: ${resetCode}`,
+    });
+
+  } catch (error) {
+    console.error("❌ Error sending email:", error);
+    throw new Error("Email could not be sent.");
+  }
+}
 
 export const resetPassword = async (req, res) => {
   const { email } = req.body;
@@ -79,14 +104,10 @@ export const resetPassword = async (req, res) => {
     const hashedCode = await bcrypt.hash(resetCode, 10);
 
     user.resetPasswordCode = hashedCode;
-    user.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
+    user.resetPasswordExpires = Date.now() + 15 * 60 * 1000; 
     await user.save();
 
-    await transporter.sendMail({
-      to: email,
-      subject: "Password Reset Code",
-      text: `Your password reset code is: ${resetCode}`,
-    });
+    await sendResetEmail(email, resetCode);
 
     res.json({ message: "Verification code sent to email" });
   } catch (error) {
@@ -96,7 +117,7 @@ export const resetPassword = async (req, res) => {
 };
 
 export const verifyCode = async (req, res) => {
-  const { reset_email, code } = req.body;
+  const {reset_email, code } = req.body;
   try {
     const user = await User.findOne({ email: reset_email });
     if (!user || !user.resetPasswordCode) return res.status(400).json({ error: "Invalid request" });
@@ -130,7 +151,6 @@ export const newPassword = async (req, res) => {
   }
 
 };
-
 export const getUserProfile = async (req, res) => {
   try {
     const { uname } = req.params;
