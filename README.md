@@ -17,28 +17,28 @@ Code-Genie leverages OpenAI's API to provide intelligent tutoring, helping users
 ## **Explanation of the Main Files**  
 
 ### **Backend**  
-- **code-genie-backend/index.js**: Entry point for the backend server. Configures middleware, API routes, and connects to the database.  
-- **code-genie-backend/routes/Routes.js**: Defines API routes for authentication and AI-powered chat functions.  
-- **code-genie-backend/models/User.js**: Mongoose schema for storing user authentication details.  
-- **code-genie-backend/controllers/userController.js**: Handles authentication and user-related logic.  
-- **code-genie-backend/middleware/verifyJWT.js**: Middleware for verifying JWT tokens to protect routes.  
+- **`code-genie-backend/index.js`**: Entry point for the backend server. Configures middleware, API routes, and connects to the database.  
+- **`code-genie-backend/routes/Routes.js`**: Defines API routes for authentication and AI-powered chat functions.  
+- **`code-genie-backend/models/User.js`**: Mongoose schema for storing user authentication details.  
+- **`code-genie-backend/controllers/userController.js`**: Handles authentication and user-related logic.  
+- **`code-genie-backend/middleware/verifyJWT.js`**: Middleware for verifying JWT tokens to protect routes.  
 
 ### **API Integration**  
-- **code-genie-api/code_genie.py**: Python script interacting with OpenAI API to generate responses for user queries.  
+- **`code-genie-api/code_genie.py`**: Python script interacting with OpenAI API to generate responses for user queries.  
 
 ### **Frontend**  
-- **code-genie-frontend/src/components/**: Contains all React components.  
-  - **App.jsx**: Main application component managing routes.  
-  - **AuthProvider.jsx**: Context provider for managing authentication state.  
-  - **ChatPage.jsx**: Main interface where users interact with the AI tutor.  
-  - **Login.jsx**: User login page handling authentication.  
-  - **Register.jsx**: User registration page for creating accounts.  
-  - **EditProfile.jsx**: Component for updating user profile details.  
-  - **ChangePassword.jsx**: Allows users to securely update their passwords.  
-  - **ProtectedLayout.jsx**: Ensures authentication before allowing access to certain pages.  
+- **`code-genie-frontend/src/components/`**: Contains all React components.  
+  - **`App.jsx`**: Main application component managing routes.  
+  - **`AuthProvider.jsx`**: Context provider for managing authentication state.  
+  - **`ChatPage.jsx`**: Main interface where users interact with the AI tutor.  
+  - **`Login.jsx`**: User login page handling authentication.  
+  - **`Register.jsx`**: User registration page for creating accounts.  
+  - **`EditProfile.jsx`**: Component for updating user profile details.  
+  - **`ChangePassword.jsx`**: Allows users to securely update their passwords.  
+  - **`ProtectedLayout.jsx`**: Ensures authentication before allowing access to certain pages.  
 
-- **code-genie-frontend/src/assets/**: Contains images and styles used in the application.  
-- **code-genie-frontend/src/config.js**: Stores API base URL for both development and production environments.  
+- **`code-genie-frontend/src/assets/`**: Contains images and styles used in the application.  
+- **`code-genie-frontend/src/config.js`**: Stores API base URL for both development and production environments.  
 
 ---
 
@@ -105,7 +105,8 @@ Terminal 1:
 cd code-genie-frontend
 npm start
 ```
---
+
+<hr style="border: 0.5px solid #ccc;">
 
 Open a separate terminal and run the following commands:
 
@@ -115,7 +116,8 @@ Terminal 2:
 cd code-genie-backend
 npm start
 ```
---
+
+<hr style="border: 0.5px solid #ccc;">
 
 Open a separate terminal and run the following commands:
 
