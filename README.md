@@ -106,7 +106,7 @@ cd code-genie-frontend
 npm start
 ```
 
-<hr style="border: 0.5px solid #ccc;">
+<hr style="border: 0.1px solid #ccc;">
 
 Open a separate terminal and run the following commands:
 
@@ -117,7 +117,7 @@ cd code-genie-backend
 npm start
 ```
 
-<hr style="border: 0.5px solid #ccc;">
+<hr style="border: 0.1px solid #ccc;">
 
 Open a separate terminal and run the following commands:
 
