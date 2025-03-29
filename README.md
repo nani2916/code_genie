@@ -83,7 +83,7 @@ export const REDIRECT_URI = "<Your OAuth redirect URI>"
 Open a terminal and enter the following commands:
 
 ```sh
-cd code-genie-frontend
+cd code-genie-backend
 npm install
 ```
 
@@ -98,12 +98,14 @@ OPEN_API_KEY="<Your OpenAPI Key>"
 ### 4. Start the Application
 
 Open a terminal and enter the following commands in seperate terminal:
+
 Terminal 1:
 
 ```sh
 cd code-genie-frontend
 npm start
 ```
+--
 
 Open a separate terminal and run the following commands:
 
@@ -113,6 +115,7 @@ Terminal 2:
 cd code-genie-backend
 npm start
 ```
+--
 
 Open a separate terminal and run the following commands:
 
@@ -128,8 +131,24 @@ Once both the frontend, backend and flask servers are running, open your browser
 ```sh
 http://localhost:3000
 ```
+---
 
+## **Dependencies and Prerequisites**
 
+### **Backend**
+- **`Node.js`**: JavaScript runtime for server-side logic.
+- **`Express.js`**: Web framework for handling API requests.
+- **`MongoDB`**: Database for storing user and session data.
+- **`Mongoose`**: ODM for MongoDB to interact with the database efficiently.
+- **`JWT`**: Authentication via JSON Web Tokens.
+
+### **API**
+- **`Python`**: Used for AI model integration.
+- **`OpenAI API`**: Provides AI-powered responses for tutoring assistance.
+
+### **Frontend**
+- **`React.js`**: Frontend framework for building the user interface.
+- **`Tailwind CSS`**: Styling framework for a responsive and modern design.
 
 
 
