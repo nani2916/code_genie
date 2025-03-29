@@ -1,1 +1,118 @@
-# code_genie
+
+# **Code-Genie**  
+An AI-powered tutor application designed to assist users in learning and solving coding-related problems through an interactive chat interface.
+
+## **Project Overview**  
+Code-Genie leverages OpenAI's API to provide intelligent tutoring, helping users understand and debug code efficiently. The application includes authentication, real-time interaction, and a user-friendly interface.
+
+### **Key Features**  
+- **AI-Powered Tutoring**: Uses OpenAI API to generate responses for code-related queries.  
+- **User Authentication**: Secure login and registration system.  
+- **Interactive Chat**: Allows users to communicate with the AI tutor in real-time.  
+- **Profile Management**: Users can update their details securely.  
+- **Responsive UI**: Designed for seamless use across devices.  
+
+---
+
+## **Explanation of the Main Files**  
+
+### **Backend**  
+- **code-genie-backend/index.js**: Entry point for the backend server. Configures middleware, API routes, and connects to the database.  
+- **code-genie-backend/routes/Routes.js**: Defines API routes for authentication and AI-powered chat functions.  
+- **code-genie-backend/models/User.js**: Mongoose schema for storing user authentication details.  
+- **code-genie-backend/controllers/userController.js**: Handles authentication and user-related logic.  
+- **code-genie-backend/middleware/verifyJWT.js**: Middleware for verifying JWT tokens to protect routes.  
+
+### **API Integration**  
+- **code-genie-api/code_genie.py**: Python script interacting with OpenAI API to generate responses for user queries.  
+
+### **Frontend**  
+- **code-genie-frontend/src/components/**: Contains all React components.  
+  - **App.jsx**: Main application component managing routes.  
+  - **AuthProvider.jsx**: Context provider for managing authentication state.  
+  - **ChatPage.jsx**: Main interface where users interact with the AI tutor.  
+  - **Login.jsx**: User login page handling authentication.  
+  - **Register.jsx**: User registration page for creating accounts.  
+  - **EditProfile.jsx**: Component for updating user profile details.  
+  - **ChangePassword.jsx**: Allows users to securely update their passwords.  
+  - **ProtectedLayout.jsx**: Ensures authentication before allowing access to certain pages.  
+
+- **code-genie-frontend/src/assets/**: Contains images and styles used in the application.  
+- **code-genie-frontend/src/config.js**: Stores API base URL for both development and production environments.  
+
+---
+
+## **Steps to Set Up and Run the Application**  
+
+### **Prerequisites**  
+Ensure you have the following installed:  
+- **Node.js (v14+ recommended)**  
+- **MongoDB (local or hosted)**  
+- **Python 3+**  
+
+### **1. Clone the Repository**  
+```sh
+https://github.dev/nani2916/code_genie
+cd code_genie
+```
+
+### **2. Front-end Setup**  
+Open a terminal and enter the following commands:
+Terminal 1:
+
+```sh
+cd code-genie-frontend
+npm install
+npm start
+```
+
+### **2. Back-end Setup**  
+Create a config.js file in the code-genie-backend root directory and add the following variables:
+
+```sh
+export const MONGODB_URL = "<Your MongoDB connection string>"
+export const JWT_SECRET = "<Your JWT secret key>"
+export const EMAIL_USER = "<Your email username>"
+export const EMAIL_PASS = "<Your email password>"
+export const CLIENT_ID = "<Your Google OAuth client ID>"
+export const CLIENT_SECRET = "<Your Google OAuth client secret>"
+export const REFRESH_TOKEN = "<Your Google OAuth refresh token>"
+export const REDIRECT_URI = "<Your OAuth redirect URI>"
+
+```
+
+Then, open a separate terminal and run the following commands:
+
+Terminal 2:
+
+```sh
+cd code-genie-backend
+npm install
+npm start
+```
+
+### **3. API Setup**  
+Create a config.py file in the code-genie-backend root directory and add the following variable:
+
+```sh
+OPEN_API_KEY="<Your OpenAPI Key>"
+```
+Then, open a separate terminal and run the following commands:
+
+Terminal 3:
+
+```sh
+python code-genie.py
+```
+
+### 4. Access the Application
+Once both the frontend, backend and flask servers are running, open your browser and visit:
+
+```sh
+http://localhost:3000
+```
+
+
+
+
+
