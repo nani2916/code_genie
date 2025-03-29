@@ -1,9 +1,9 @@
 
 # **Code-Genie**  
-An AI-powered tutor application designed to assist users in learning and solving coding-related problems through an interactive chat interface.
+Code-Genie is an interactive AI tutor designed to enhance coding efficiency and learning. It provides real-time coding assistance, debugging support, and syntax explanations through an intuitive chat-based interface. The application leverages OpenAI’s API to generate precise coding suggestions and explanations, making it a powerful tool for both beginners and experienced developers. 🚀
 
 ## **Project Overview**  
-Code-Genie leverages OpenAI's API to provide intelligent tutoring, helping users understand and debug code efficiently. The application includes authentication, real-time interaction, and a user-friendly interface.
+Code-Genie is an AI-powered coding tutor that assists developers with intelligent code suggestions, debugging help, and real-time learning support using OpenAI's API.
 
 ### **Key Features**  
 - **AI-Powered Tutoring**: Uses OpenAI API to generate responses for code-related queries.  
