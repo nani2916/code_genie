@@ -52,18 +52,17 @@ Ensure you have the following installed:
 
 ### **1. Clone the Repository**  
 ```sh
-https://github.dev/nani2916/code_genie
+git clone https://github.dev/nani2916/code_genie
 cd code_genie
 ```
 
 ### **2. Front-end Setup**  
 Open a terminal and enter the following commands:
-Terminal 1:
+
 
 ```sh
 cd code-genie-frontend
 npm install
-npm start
 ```
 
 ### **2. Back-end Setup**  
@@ -81,23 +80,41 @@ export const REDIRECT_URI = "<Your OAuth redirect URI>"
 
 ```
 
-Then, open a separate terminal and run the following commands:
+Open a terminal and enter the following commands:
+
+```sh
+cd code-genie-frontend
+npm install
+```
+
+
+### **3. API Setup**  
+Create a config.py file in the code-genie-api root directory and add the following variable:
+
+```sh
+OPEN_API_KEY="<Your OpenAPI Key>"
+```
+
+### 4. Start the Application
+
+Open a terminal and enter the following commands in seperate terminal:
+Terminal 1:
+
+```sh
+cd code-genie-frontend
+npm start
+```
+
+Open a separate terminal and run the following commands:
 
 Terminal 2:
 
 ```sh
 cd code-genie-backend
-npm install
 npm start
 ```
 
-### **3. API Setup**  
-Create a config.py file in the code-genie-backend root directory and add the following variable:
-
-```sh
-OPEN_API_KEY="<Your OpenAPI Key>"
-```
-Then, open a separate terminal and run the following commands:
+Open a separate terminal and run the following commands:
 
 Terminal 3:
 
@@ -105,7 +122,7 @@ Terminal 3:
 python code-genie.py
 ```
 
-### 4. Access the Application
+### 5. Access the Application
 Once both the frontend, backend and flask servers are running, open your browser and visit:
 
 ```sh
